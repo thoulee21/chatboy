@@ -1,6 +1,11 @@
 import React, { useCallback, useState } from 'react'
-import { GiftedChat, IMessage } from 'react-native-gifted-chat'
-import { Avatar } from 'react-native-paper'
+import type { TextInputProps } from 'react-native'
+import {
+  GiftedChat,
+  IMessage,
+  InputToolbar,
+} from 'react-native-gifted-chat'
+import { Avatar, useTheme } from 'react-native-paper'
 import type {
   AvatarImageSource
 } from 'react-native-paper/lib/typescript/components/Avatar/AvatarImage'
@@ -19,6 +24,7 @@ const STARTER_MESSAGES: IMessage[] = [
 ]
 
 export default function App() {
+  const appTheme = useTheme()
   const [messages, setMessages] = useState(STARTER_MESSAGES)
 
   const onSend = useCallback((messages = [] as IMessage[]) => {
@@ -40,6 +46,23 @@ export default function App() {
         <Avatar.Image
           size={40}
           source={props.currentMessage.user.avatar as AvatarImageSource}
+        />
+      )}
+      textInputProps={{
+        style: {
+          color: appTheme.colors.onSurface,
+          height: 55,
+          width: '84%',
+          paddingHorizontal: 8,
+        }
+      } as TextInputProps}
+      renderInputToolbar={(props) => (
+        <InputToolbar
+          {...props}
+          containerStyle={{
+            backgroundColor: appTheme.colors.surface,
+            marginTop: 8,
+          }}
         />
       )}
     />
