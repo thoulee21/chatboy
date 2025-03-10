@@ -26,6 +26,7 @@
       "enabled": true
     },
     "plugins": [
+      "./plugin/gradle-properties",
       "expo-router",
       "expo-updates",
       "expo-system-ui",
