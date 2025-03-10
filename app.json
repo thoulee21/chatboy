@@ -1,32 +1,37 @@
 {
   "expo": {
-    "name": "chatboy",
+    "name": "Chatboy",
     "slug": "chatboy",
+    "scheme": "chatboy",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./src/assets/images/icon.png",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./src/assets/images/icon.png",
       "resizeMode": "cover",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#6a2c73"
     },
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/icon.png",
+        "foregroundImage": "./src/assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.thoulee.chatboy"
     },
     "web": {
-      "favicon": "./assets/icon.png"
+      "favicon": "./src/assets/images/icon.png",
+      "bundler": "metro"
     },
     "updates": {
       "enabled": true
-    }
+    },
+    "plugins": [
+      "expo-router"
+    ]
   }
 }
