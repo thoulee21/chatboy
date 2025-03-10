@@ -8,11 +8,6 @@
     "icon": "./src/assets/images/icon.png",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
-    "splash": {
-      "image": "./src/assets/images/icon.png",
-      "resizeMode": "cover",
-      "backgroundColor": "#6a2c73"
-    },
     "ios": {
       "supportsTablet": true
     },
@@ -31,7 +26,17 @@
       "enabled": true
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "expo-updates",
+      "expo-system-ui",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./src/assets/images/icon.png",
+          "resizeMode": "cover",
+          "backgroundColor": "#6a2c73"
+        }
+      ]
     ]
   }
 }
