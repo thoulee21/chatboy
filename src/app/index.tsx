@@ -1,3 +1,4 @@
+import { router, Stack } from 'expo-router'
 import React, { useCallback, useState } from 'react'
 import type { TextInputProps } from 'react-native'
 import {
@@ -5,7 +6,7 @@ import {
   IMessage,
   InputToolbar,
 } from 'react-native-gifted-chat'
-import { Avatar, useTheme } from 'react-native-paper'
+import { Avatar, IconButton, useTheme } from 'react-native-paper'
 import type {
   AvatarImageSource
 } from 'react-native-paper/lib/typescript/components/Avatar/AvatarImage'
@@ -34,37 +35,51 @@ export default function App() {
   }, [])
 
   return (
-    <GiftedChat
-      messages={messages}
-      onSend={onSend}
-      user={{
-        _id: 1,
-        avatar: require('@/assets/images/icon.png'),
-      }}
-      showUserAvatar
-      renderAvatar={(props) => (
-        <Avatar.Image
-          size={40}
-          source={props.currentMessage.user.avatar as AvatarImageSource}
-        />
-      )}
-      textInputProps={{
-        style: {
-          color: appTheme.colors.onSurface,
-          height: 55,
-          width: '84%',
-          paddingHorizontal: 8,
-        }
-      } as TextInputProps}
-      renderInputToolbar={(props) => (
-        <InputToolbar
-          {...props}
-          containerStyle={{
-            backgroundColor: appTheme.colors.surface,
-            marginTop: 8,
-          }}
-        />
-      )}
-    />
+    <>
+      <Stack.Screen options={{
+        headerRight: ({ tintColor }) => (
+          <IconButton
+            icon="test-tube"
+            iconColor={tintColor}
+            onPress={() => {
+              router.push('/test')
+            }}
+          />
+        )
+      }} />
+
+      <GiftedChat
+        messages={messages}
+        onSend={onSend}
+        user={{
+          _id: 1,
+          avatar: require('@/assets/images/icon.png'),
+        }}
+        showUserAvatar
+        renderAvatar={(props) => (
+          <Avatar.Image
+            size={40}
+            source={props.currentMessage.user.avatar as AvatarImageSource}
+          />
+        )}
+        textInputProps={{
+          style: {
+            color: appTheme.colors.onSurface,
+            height: 55,
+            width: '84%',
+            paddingHorizontal: 8,
+          }
+        } as TextInputProps}
+        renderInputToolbar={(props) => (
+          <InputToolbar
+            {...props}
+            containerStyle={{
+              backgroundColor: appTheme.colors.surface,
+              marginTop: 8,
+            }}
+          />
+        )}
+      />
+    </>
   )
 }

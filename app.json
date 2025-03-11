@@ -25,6 +25,9 @@
     "updates": {
       "enabled": true
     },
+    "experiments": {
+      "typedRoutes": true
+    },
     "plugins": [
       "./plugin/gradle-properties",
       "expo-router",
