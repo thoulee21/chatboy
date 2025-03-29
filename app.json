@@ -23,7 +23,8 @@
       "bundler": "metro"
     },
     "updates": {
-      "enabled": true
+      "enabled": true,
+      "url": "https://u.expo.dev/afb15eb7-2e38-4f5d-b028-de4b8c562c23"
     },
     "experiments": {
       "typedRoutes": true
@@ -41,6 +42,17 @@
           "backgroundColor": "#6a2c73"
         }
       ]
-    ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "afb15eb7-2e38-4f5d-b028-de4b8c562c23"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    }
   }
 }
