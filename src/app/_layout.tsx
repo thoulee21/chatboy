@@ -8,6 +8,7 @@ import { TransitionPresets } from "@react-navigation/stack";
 import * as SplashScreen from "expo-splash-screen";
 import React from "react";
 import { StatusBar, useColorScheme } from "react-native";
+import "react-native-get-random-values";
 import {
   MD3DarkTheme,
   MD3LightTheme,
