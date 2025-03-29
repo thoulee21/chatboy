@@ -17,7 +17,7 @@ import {
 import "react-native-url-polyfill/auto";
 
 import { SOURCE_COLOR } from "@/constants/theme";
-import { UserProvider, useUser } from "@/contexts/UserContext";
+import { UserProvider } from "@/contexts/UserContext";
 import { JsStack as Stack } from "@/layouts/js-stack";
 
 export {
@@ -27,13 +27,9 @@ export {
 
 SplashScreen.preventAutoHideAsync();
 
-function RootStack() {
-  const user = useUser();
+function ThemedApp() {
   const colorScheme = useColorScheme();
-
-  const { theme } = useMaterial3Theme({
-    sourceColor: user?.current ? user.current?.prefs.sourceColor : SOURCE_COLOR,
-  });
+  const { theme } = useMaterial3Theme({ sourceColor: SOURCE_COLOR });
 
   const paperTheme =
     colorScheme === "dark"
@@ -65,20 +61,26 @@ function RootStack() {
         }}
       >
         <PaperProvider theme={paperTheme}>
-          <Stack screenOptions={{ ...TransitionPresets.SlideFromRightIOS }}>
-            <Stack.Screen name="(drawer)" options={{ headerShown: false }} />
-            <Stack.Screen name="login" options={{ title: "Login" }} />
-          </Stack>
+          <RootStack />
         </PaperProvider>
       </NaviThemeProvider>
     </>
   );
 }
 
+function RootStack() {
+  return (
+    <Stack screenOptions={{ ...TransitionPresets.SlideFromRightIOS }}>
+      <Stack.Screen name="(drawer)" options={{ headerShown: false }} />
+      <Stack.Screen name="login" options={{ title: "Login" }} />
+    </Stack>
+  );
+}
+
 export default function Index() {
   return (
     <UserProvider>
-      <RootStack />
+      <ThemedApp />
     </UserProvider>
   );
 }
