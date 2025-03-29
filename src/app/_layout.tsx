@@ -5,6 +5,7 @@ import {
   ThemeProvider as NaviThemeProvider,
 } from "@react-navigation/native";
 import { TransitionPresets } from "@react-navigation/stack";
+import * as SplashScreen from "expo-splash-screen";
 import React from "react";
 import { StatusBar, useColorScheme } from "react-native";
 import {
@@ -15,6 +16,8 @@ import {
 } from "react-native-paper";
 import "react-native-url-polyfill/auto";
 
+import { SOURCE_COLOR } from "@/constants/theme";
+import { UserProvider, useUser } from "@/contexts/UserContext";
 import { JsStack as Stack } from "@/layouts/js-stack";
 
 export {
@@ -22,9 +25,15 @@ export {
   ErrorBoundary,
 } from "expo-router";
 
-export default function RootStack() {
+SplashScreen.preventAutoHideAsync();
+
+function RootStack() {
+  const user = useUser();
   const colorScheme = useColorScheme();
-  const { theme } = useMaterial3Theme({ sourceColor: "#6a2c73" });
+
+  const { theme } = useMaterial3Theme({
+    sourceColor: user?.current ? user.current?.prefs.sourceColor : SOURCE_COLOR,
+  });
 
   const paperTheme =
     colorScheme === "dark"
@@ -56,12 +65,20 @@ export default function RootStack() {
         }}
       >
         <PaperProvider theme={paperTheme}>
-          <Stack screenOptions={TransitionPresets.SlideFromRightIOS}>
+          <Stack screenOptions={{ ...TransitionPresets.SlideFromRightIOS }}>
             <Stack.Screen name="(drawer)" options={{ headerShown: false }} />
-            <Stack.Screen name="auth" options={{ title: "Authentication" }} />
+            <Stack.Screen name="login" options={{ title: "Login" }} />
           </Stack>
         </PaperProvider>
       </NaviThemeProvider>
     </>
+  );
+}
+
+export default function Index() {
+  return (
+    <UserProvider>
+      <RootStack />
+    </UserProvider>
   );
 }

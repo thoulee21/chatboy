@@ -1,0 +1,1 @@
+export const SOURCE_COLOR = "#6a2c73";

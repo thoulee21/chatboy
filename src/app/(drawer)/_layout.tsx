@@ -14,22 +14,30 @@ import {
 } from "react-native-paper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
+import { useUser } from "@/contexts/UserContext";
+
 const DRAWER_ICONS = ["home"];
 
 export default function DrawerLayout() {
   const insets = useSafeAreaInsets();
+  const user = useUser();
 
   const renderDrawerContent = useCallback(
     (props: DrawerContentComponentProps) => (
       <View style={{ flex: 1 }}>
         <Button
           style={{ marginTop: insets.top, marginBottom: 8 }}
-          icon={({ size }) => {
-            return <Avatar.Icon icon="account" size={26} />;
+          icon={() => <Avatar.Icon icon="account" size={26} />}
+          onPress={() => {
+            if (user?.current) {
+              router.push("/me");
+            } else {
+              router.push("/login");
+            }
           }}
-          onPress={() => router.push("/auth")}
+          onLongPress={() => router.push("/me")}
         >
-          Profile
+          {user?.current ? user.current.name : "Login"}
         </Button>
         <Divider />
 
@@ -52,7 +60,7 @@ export default function DrawerLayout() {
         </DrawerContentScrollView>
       </View>
     ),
-    [insets.top]
+    [insets.top, user]
   );
 
   return (
