@@ -4,7 +4,6 @@ import {
   DefaultTheme,
   ThemeProvider as NaviThemeProvider,
 } from "@react-navigation/native";
-import { TransitionPresets } from "@react-navigation/stack";
 import * as SplashScreen from "expo-splash-screen";
 import React from "react";
 import { StatusBar, useColorScheme } from "react-native";
@@ -21,10 +20,8 @@ import { SOURCE_COLOR } from "@/constants/theme";
 import { UserProvider } from "@/contexts/UserContext";
 import { JsStack as Stack } from "@/layouts/js-stack";
 
-export {
-  // Catch any errors thrown by the Layout component.
-  ErrorBoundary,
-} from "expo-router";
+// Catch any errors thrown by the Layout component.
+export { ErrorBoundary } from "expo-router";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -71,7 +68,7 @@ function ThemedApp() {
 
 function RootStack() {
   return (
-    <Stack screenOptions={{ ...TransitionPresets.SlideFromRightIOS }}>
+    <Stack>
       <Stack.Screen name="(drawer)" options={{ headerShown: false }} />
       <Stack.Screen name="login" options={{ title: "Login" }} />
     </Stack>
