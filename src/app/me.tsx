@@ -1,14 +1,7 @@
 import { Redirect, router, Stack } from "expo-router";
 import React from "react";
 import { SafeAreaView, ScrollView, StyleSheet } from "react-native";
-import {
-  Avatar,
-  Button,
-  Card,
-  IconButton,
-  Text,
-  useTheme,
-} from "react-native-paper";
+import { Avatar, Button, Card, IconButton, useTheme } from "react-native-paper";
 
 import { useUser } from "@/contexts/UserContext";
 
@@ -42,13 +35,10 @@ export default function MeScreen() {
               source={require("../assets/images/adaptive-icon.png")}
             />
             <Card.Title
-              title="User Profile"
+              title={user.current?.name}
+              subtitle={user.current?.email}
               left={({ size }) => <Avatar.Icon icon="account" size={size} />}
             />
-            <Card.Content>
-              <Text>{user.current?.name}</Text>
-              <Text>{user.current?.email}</Text>
-            </Card.Content>
           </Card>
 
           <Button
