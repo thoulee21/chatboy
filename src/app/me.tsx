@@ -23,18 +23,7 @@ export default function MeScreen() {
 
   return (
     <>
-      <Stack.Screen
-        options={{
-          title: "Me",
-          headerRight: ({ tintColor }) => (
-            <IconButton
-              icon="cog-outline"
-              onPress={() => router.push("/settings")}
-              iconColor={tintColor}
-            />
-          ),
-        }}
-      />
+      <Stack.Screen options={{ title: "Me" }} />
 
       <SafeAreaView style={styles.root}>
         <ScrollView contentContainerStyle={styles.cards}>

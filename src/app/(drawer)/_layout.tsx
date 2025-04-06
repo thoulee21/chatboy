@@ -16,7 +16,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { useUser } from "@/contexts/UserContext";
 
-const DRAWER_ICONS = ["home"];
+const DRAWER_ICONS = ["home", "cog"];
 
 export default function DrawerLayout() {
   const insets = useSafeAreaInsets();
@@ -73,6 +73,7 @@ export default function DrawerLayout() {
       detachInactiveScreens
     >
       <Drawer.Screen name="index" options={{ title: "Chat" }} />
+      <Drawer.Screen name="settings" options={{ title: "Settings" }} />
     </Drawer>
   );
 }
