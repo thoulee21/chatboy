@@ -4,9 +4,11 @@ import {
   DefaultTheme,
   ThemeProvider as NaviThemeProvider,
 } from "@react-navigation/native";
+import { TransitionPresets } from "@react-navigation/stack";
 import * as SplashScreen from "expo-splash-screen";
+import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StatusBar, useColorScheme } from "react-native";
+import { useColorScheme } from "react-native";
 import "react-native-get-random-values";
 import {
   MD3DarkTheme,
@@ -44,31 +46,29 @@ function ThemedApp() {
 
   return (
     <>
-      <StatusBar
-        translucent
-        backgroundColor="transparent"
-        barStyle={colorScheme === "dark" ? "light-content" : "dark-content"}
-      />
-
-      <NaviThemeProvider
-        value={{
-          ...(colorScheme === "dark"
-            ? NavigationDarkTheme
-            : NavigationLightTheme),
-          fonts: DefaultTheme.fonts,
-        }}
-      >
-        <PaperProvider theme={paperTheme}>
+      <PaperProvider theme={paperTheme}>
+        <NaviThemeProvider
+          value={{
+            ...(colorScheme === "dark"
+              ? NavigationDarkTheme
+              : NavigationLightTheme),
+            fonts: DefaultTheme.fonts,
+          }}
+        >
+          <StatusBar
+            translucent
+            style={colorScheme === "dark" ? "light" : "dark"}
+          />
           <RootStack />
-        </PaperProvider>
-      </NaviThemeProvider>
+        </NaviThemeProvider>
+      </PaperProvider>
     </>
   );
 }
 
 function RootStack() {
   return (
-    <Stack>
+    <Stack screenOptions={TransitionPresets.SlideFromRightIOS}>
       <Stack.Screen name="(drawer)" options={{ headerShown: false }} />
       <Stack.Screen name="login" options={{ title: "Login" }} />
     </Stack>
