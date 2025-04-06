@@ -8,7 +8,7 @@ import { TransitionPresets } from "@react-navigation/stack";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { useColorScheme } from "react-native";
+import { Platform, useColorScheme } from "react-native";
 import "react-native-get-random-values";
 import {
   MD3DarkTheme,
@@ -66,7 +66,11 @@ function ThemedApp() {
 
 function RootStack() {
   return (
-    <Stack screenOptions={TransitionPresets.SlideFromRightIOS}>
+    <Stack
+      screenOptions={
+        Platform.OS !== "web" ? TransitionPresets.SlideFromRightIOS : undefined
+      }
+    >
       <Stack.Screen name="(drawer)" options={{ headerShown: false }} />
       <Stack.Screen name="login" options={{ title: "Login" }} />
     </Stack>
