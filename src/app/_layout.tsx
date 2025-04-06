@@ -45,24 +45,22 @@ function ThemedApp() {
     });
 
   return (
-    <>
-      <PaperProvider theme={paperTheme}>
-        <NaviThemeProvider
-          value={{
-            ...(colorScheme === "dark"
-              ? NavigationDarkTheme
-              : NavigationLightTheme),
-            fonts: DefaultTheme.fonts,
-          }}
-        >
-          <StatusBar
-            translucent
-            style={colorScheme === "dark" ? "light" : "dark"}
-          />
-          <RootStack />
-        </NaviThemeProvider>
-      </PaperProvider>
-    </>
+    <PaperProvider theme={paperTheme}>
+      <NaviThemeProvider
+        value={{
+          ...(colorScheme === "dark"
+            ? NavigationDarkTheme
+            : NavigationLightTheme),
+          fonts: DefaultTheme.fonts,
+        }}
+      >
+        <StatusBar
+          translucent
+          style={colorScheme === "dark" ? "light" : "dark"}
+        />
+        <RootStack />
+      </NaviThemeProvider>
+    </PaperProvider>
   );
 }
 
