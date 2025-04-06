@@ -5,7 +5,7 @@ import {
 import { router } from "expo-router";
 import { Drawer } from "expo-router/drawer";
 import React, { useCallback } from "react";
-import { View } from "react-native";
+import { View, useWindowDimensions } from "react-native";
 import {
   Avatar,
   Button,
@@ -21,6 +21,9 @@ const DRAWER_ICONS = ["home", "cog"];
 export default function DrawerLayout() {
   const insets = useSafeAreaInsets();
   const user = useUser();
+
+  const { width, height } = useWindowDimensions();
+  const isLandscape = width > height;
 
   const renderDrawerContent = useCallback(
     (props: DrawerContentComponentProps) => (
@@ -67,7 +70,7 @@ export default function DrawerLayout() {
     <Drawer
       screenOptions={{
         drawerStyle: { width: 100 },
-        drawerType: "slide",
+        drawerType: isLandscape ? "permanent" : "slide",
       }}
       drawerContent={renderDrawerContent}
       detachInactiveScreens
