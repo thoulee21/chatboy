@@ -29,7 +29,12 @@ export default function DrawerLayout() {
     (props: DrawerContentComponentProps) => (
       <View style={{ flex: 1 }}>
         <Button
-          style={{ marginTop: insets.top, marginBottom: 8 }}
+          style={{
+            marginTop: insets.top + 12.5,
+            marginBottom: 12.5,
+            marginHorizontal: 1,
+          }}
+          compact
           icon={() => <Avatar.Icon icon="account" size={26} />}
           onPress={() => {
             if (user?.current) {
